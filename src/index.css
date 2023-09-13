@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+/* Cambia el color de la pista de desplazamiento */
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+/* Cambia el color del pulgar */
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 20px;
+}
+
+/* Cambia el color de la esquina (si está presente) */
+::-webkit-scrollbar-corner {
+    background: none;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
