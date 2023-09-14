@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useChat } from '../Context/Context'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
 
@@ -73,7 +74,7 @@ export default function Login() {
                             </svg> : <span>Iniciar Sesión</span>}
                         </button>
                     
-                    <p className='text-center'>¿No tienes cuenta? <a href="/register" className="text-blue-200 hover:underline">Registrate</a></p>
+                    <p className='text-center'>¿No tienes cuenta? <Link className="text-blue-200 hover:underline" to={"/register"}>Registrate</Link></p>
                 </form>
         </main>
     )
