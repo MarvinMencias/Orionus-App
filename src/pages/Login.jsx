@@ -3,6 +3,9 @@ import { useChat } from '../Context/Context'
 import { Link } from 'react-router-dom'
 
 export default function Login() {
+    const bgImage = {
+        backgroundImage: 'url(bg.png)',
+    }
 
     const {LoginUser, loading, loginError } = useChat()
     
@@ -23,7 +26,7 @@ export default function Login() {
     }
 
     return (
-        <main className="flex w-full bg-[url('bg.png')] bg-no-repeat bg-cover bg-center min-h-screen items-center justify-center">
+        <main style={bgImage} className="flex w-full bg-no-repeat bg-cover bg-center min-h-screen items-center justify-center">
                 <form className="text-white bg-[#252931] px-24 py-10 [&>div>input]:bg-transparent [&>div>label]:text-[11px] flex flex-col gap-7 [&>div>input]:w-full [&>div>label]:font-black [&>div>label]:tracking-[1px] [&>div>input]:outline-none [&>div>input]:py-1 rounded-xl" onSubmit={handleLogin}>
                     <div className='text-center'>
                         <h3 className='text-3xl font-black mb-1'>¡Hola de nuevo!</h3>
