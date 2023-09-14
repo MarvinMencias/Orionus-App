@@ -12,16 +12,9 @@ export default function App() {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
-        if (window.location.pathname !== "/register") {
-          navigate("/login")
-        }
-        console.log(session)
-      } else {
-        navigate("/")
-        console.log(session)
-      }
-    });
+      if (session) {
+          navigate("/")
+    }});
   }, [navigate])
 
   return (
