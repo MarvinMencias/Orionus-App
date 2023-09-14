@@ -10,18 +10,23 @@ import Login from './pages/Login'
 export default function App() {
   const navigate = useNavigate()
 
-  useEffect(() => {
+  const ProtectedRouter = ({ children }) => {
     supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) {
-          navigate("/")
-    }});
-  }, [navigate])
+    
+    if (!session) {
+      return navigate("/login")
+    }else{
+
+    }})
+
+    return children
+  }
 
   return (
     <>
       <ChatContextProvider>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<ProtectedRouter><Home/></ProtectedRouter>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='*' element={<NotFound/>}/>

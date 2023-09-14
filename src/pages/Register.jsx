@@ -128,7 +128,7 @@ export default function Register() {
                             </svg> : <span>Registrarse</span>}
                         </button>
                     
-                    <p className='text-center'>¿Ya tienes cuenta? <Link className="text-blue-200 hover:underline" to={"/login"}>Iniciar sesión</Link></p>
+                    <p className='text-center'>¿Ya tienes cuenta? <a href="/login" className="text-blue-200 hover:underline">Iniciar Sesión</a></p>
                 </form>
         </main>
     )
