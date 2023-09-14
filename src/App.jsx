@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import { supabase } from './client'
 import { useEffect } from 'react'
 import NotFound from './pages/NotFound'
-import Login from './pages/login'
+import Login from './pages/Login'
 
 export default function App() {
   const navigate = useNavigate()
