@@ -5,28 +5,32 @@ import Home from './pages/Home'
 import { supabase } from './client'
 import { useEffect } from 'react'
 import NotFound from './pages/NotFound'
+import Login from './pages/login'
 
 export default function App() {
   const navigate = useNavigate()
 
-  /*useEffect(() => {
+  useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
       if (!session) {
-        navigate("/register")
+        if (window.location.pathname !== "/register") {
+          navigate("/login")
+        }
         console.log(session)
       } else {
         navigate("/")
         console.log(session)
       }
     });
-  }, [navigate])*/
+  }, [navigate])
 
   return (
     <>
       <ChatContextProvider>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='register' element={<Register/>}/>
+          <Route path='/register' element={<Register/>}/>
+          <Route path='/login' element={<Login/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
       </ChatContextProvider>

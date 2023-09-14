@@ -14,7 +14,6 @@ export default function StartChat() {
         setOpenCreateChat(false)
     }
 
-    console.log(openCreateChat)
     return (
         <>
             <button className="bg-blue-500 px-7 py-3 rounded-xl hover:bg-blue-400 active:bg-blue-700 duration-200" onClick={() => (setOpenCreateChat(true))}>Iniciar Chat</button>

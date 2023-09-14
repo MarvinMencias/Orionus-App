@@ -23,6 +23,28 @@ export function ChatContextProvider({ children }) {
     const [waitSend, setWaitSend] = useState(false)
     const [chatAvailable, setChatAvailable] = useState(false)
     const [loadingCreateChat, setLoadingCreateChat] = useState(true)
+    const [loginError, setLoginError] = useState(false)
+    const [nameForUser, setNameForUser] = useState('')
+    const [usernameForUser, setUsernameForUser] = useState('')
+
+
+    const getUserInformation = async () => {
+        const { data: { user } } = await supabase.auth.getUser()
+        const { data: UserData, error: UserError } = await supabase
+            .from('users')
+            .select('name, username')
+            .eq('id', user.id )
+
+        const newName = UserData[0].name
+        const newUsername = UserData[0].username    
+
+        if(UserData){
+            setNameForUser(newName)
+            setUsernameForUser(newUsername)
+        }else{
+
+        }
+    }
 
     const registerChat = async ({ name, username, email, password }) => {
         setLoading(true)
@@ -51,12 +73,27 @@ export function ChatContextProvider({ children }) {
         }
 
         setLoading(false)
-        navigate("/")
+        navigate("login")
 
     }
 
-    const Login = () => {
-        //Login...
+    const LoginUser = async ({email, password}) => {
+        setLoading(true)
+        const { data:LoginData, error: LoginError } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        })
+        
+        
+        if (LoginError) {
+            console.log(LoginError)
+            setLoginError(true)
+            console.log(loginError)
+        }else{
+            console.log(LoginData)
+            navigate("/")
+        }
+        setLoading(false)
     }
 
     const LogOut = async () => {
@@ -218,6 +255,7 @@ export function ChatContextProvider({ children }) {
     return (
         <chatContext.Provider value={{
             registerChat,
+            LoginUser,
             LogOut,
             loading,
             sendMessages,
@@ -233,7 +271,11 @@ export function ChatContextProvider({ children }) {
             waitSend,
             chatAvailable,
             createChat,
-            loadingCreateChat
+            loadingCreateChat,
+            loginError,
+            getUserInformation,
+            nameForUser,
+            usernameForUser
         }}>
 
             {children}
