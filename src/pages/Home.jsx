@@ -22,7 +22,7 @@ export default function Home() {
 
     return (
         <>
-            <main className="flex flex-col h-screen p-6 gap-3 bg-[#252931]">
+            <div className="flex flex-col min-h-screen max-h-screen p-6 gap-3 bg-[#252931]">
                 <header className=" text-white py-4 flex justify-between">
                     <div className="flex gap-3 items-center">
                         <h1 className=" text-xl font-black tracking-[2px]">Orionus</h1>
@@ -49,13 +49,11 @@ export default function Home() {
 
                 </header>
 
-                <div className="w-full flex h-full gap-5">
+                <div className="flex min-h-full gap-5">
                     <ChatList />
                     <Messenger />
                 </div>
-
-
-            </main>
+            </div>
         </>
 
     )

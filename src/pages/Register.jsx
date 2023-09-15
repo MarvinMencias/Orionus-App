@@ -21,11 +21,11 @@ export default function Register() {
         event.preventDefault()
         if (name.trim() !== '' && username.trim() !== '' && email.trim() !== '' && password.trim() !== '') {
             setEmptyValues(false)
-            if (username.length < 8 && password.length >= 8) {
+            if (username.length < 20 && password.length >= 8) {
                 await registerChat({name, username, email, password})
             }else{
                 console.log(passwordError)
-                if (username.length > 8) {
+                if (username.length > 20) {
                     setUsernameError(true)
                 }else{
                     setUsernameError(false)
@@ -68,7 +68,7 @@ export default function Register() {
                     <div className={usernameError ? 'bg-[#15171C] rounded-xl p-3 border-2 border-red-400 text-red-400 box-border' : 'bg-[#15171C] rounded-xl p-3'}>
                         <label htmlFor='username'>
                             {usernameError ?
-                                <span>MAXIMO 8 CARACTERES</span> 
+                                <span>MAXIMO 20 CARACTERES</span> 
                                 :
                                 <span>USUARIO</span> 
                             }

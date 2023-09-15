@@ -27,8 +27,8 @@ export default function UserChat () {
 
     return (
         <>
-        <h1 className="bg-black text-white text-center py-5 sticky top-0">Mensajes</h1>
-            <div className="messages h-full overflow-y-auto px-3 py-3 box-border bg-[#1C1E25]">
+        <h2 className="bg-black text-white text-center py-5 sticky top-0">Mensajes</h2>
+            <div className="messages h-screen rounded-2xl overflow-y-auto px-3 py-3  bg-[#1C1E25]">
 
 
                 {

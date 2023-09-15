@@ -13,9 +13,10 @@ export default function () {
         setFirstCharge(true)
         await getMessages(chatID, firstCharge)
     }
+
     return (
         <div className="flex flex-col gap-5 min-h-full w-[30%] min-w-[30%]  text-white">
-            <div className="bg-[#1C1E25] rounded-2xl p-6 text-center flex flex-col gap-5">
+            <div className="bg-[#1C1E25] p-6 text-center rounded-2xl flex flex-col gap-5">
                 <h1 className="text-2xl font-black">Iniciar nuevo chat</h1>
                 <p className="text-sm text-slate-400">La vida es mejor con amigos <br />¡Invitalos a Orionus y empieza a chatear!</p>
                 <StartChat />
@@ -24,17 +25,17 @@ export default function () {
             <div className="bg-[#1C1E25] rounded-2xl overflow-x-clip overflow-y-auto p-6 flex flex-col gap-5 h-full">
                 <div className="flex justify-between items-center">
                     <h1 className="text-2xl">Chats</h1>
-                    <button 
-                    onClick={getChats} 
-                    className="hover:bg-slate-600 p-2 rounded-full duration-100">
-                         <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            className={loading ?'w-7 stroke-yellow-100 stroke-2 animate-spin': 'w-7 stroke-yellow-100 stroke-2'} 
-                            viewBox="0 0 24 24" 
-                            strokeWidth="1" 
-                            stroke="currentColor" 
-                            fill="none" 
-                            strokeLinecap="round" 
+                    <button
+                        onClick={getChats}
+                        className="hover:bg-slate-600 p-2 rounded-full duration-100">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className={loading ? 'w-7 stroke-yellow-100 stroke-2 animate-spin' : 'w-7 stroke-yellow-100 stroke-2'}
+                            viewBox="0 0 24 24"
+                            strokeWidth="1"
+                            stroke="currentColor"
+                            fill="none"
+                            strokeLinecap="round"
                             strokeLinejoin="round">
 
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -45,7 +46,32 @@ export default function () {
                 </div>
                 {
                     loading ?
-                        <p>Cargando...</p>
+                        <div className="grid gap-7 animate-pulse">
+                            <div class="flex items-center mb-4 w-full">
+                                <div class="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
+                                <div className="grid gap-5">
+                                    <div class="h-5 w-52  bg-gray-500 rounded-xl"></div>
+                                    <div class="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center mb-4 w-full">
+                                <div class="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
+                                <div className="grid gap-5">
+                                    <div class="h-5 w-52  bg-gray-500 rounded-xl"></div>
+                                    <div class="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center mb-4 w-full">
+                                <div class="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
+                                <div className="grid gap-5">
+                                    <div class="h-5 w-52  bg-gray-500 rounded-xl"></div>
+                                    <div class="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
+                                </div>
+                            </div>
+                        </div>
+
                         : (
                             isChatting
                                 ?
