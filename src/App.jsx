@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import Register from './pages/Register'
 import Home from './pages/Home'
 import { supabase } from './client'
-import { useEffect } from 'react'
 import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 

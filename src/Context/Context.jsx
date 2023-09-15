@@ -1,7 +1,7 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext } from 'react'
 import { supabase } from '../client'
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const chatContext = createContext()
 export const useChat = () => {
@@ -73,7 +73,7 @@ export function ChatContextProvider({ children }) {
         }
 
         setLoading(false)
-        navigate("login")
+        navigate('/')
 
     }
 
@@ -91,7 +91,7 @@ export function ChatContextProvider({ children }) {
             console.log(loginError)
         }else{
             console.log(LoginData)
-            navigate("/")
+            navigate('/')
         }
         setLoading(false)
     }
@@ -122,7 +122,7 @@ export function ChatContextProvider({ children }) {
         const { data: { user } } = await supabase.auth.getUser()
         const { data: receptorID, error: rcpIDError } = await supabase
             .from('users')
-            .select("id")
+            .select('id')
             .eq("username", username)
 
 
@@ -158,7 +158,7 @@ export function ChatContextProvider({ children }) {
 
                 sendMessages({message, chatActual})
         } else {
-            console.log("Chat ya existente")
+            console.log('Chat ya existente')
         }
         setLoadingCreateChat(false)
     }
@@ -207,7 +207,7 @@ export function ChatContextProvider({ children }) {
             setLoading(false)
 
         }else{
-            console.log("No hay ninguna sesion")
+            console.log('No hay ninguna sesion')
         }
 
     }
@@ -222,7 +222,7 @@ export function ChatContextProvider({ children }) {
         setWaitSend(true)
 
         if (chatActual === false) {
-            console.log("No hay chat seleccionado")
+            console.log('No hay chat seleccionado')
         }
         const { data: sender, error: senderError } = await supabase
             .from('messages')

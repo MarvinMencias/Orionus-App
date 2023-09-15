@@ -19,7 +19,6 @@ export default function Login() {
         if (email.trim() !== '' && password.trim() !== '') {
             setAlertMessage(false)
             await LoginUser({email, password})
-            console.log(email, password)
         }else{
             setAlertMessage(true)
         }

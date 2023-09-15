@@ -22,7 +22,7 @@ export default function Home() {
 
     return (
         <>
-            <div className="flex flex-col min-h-screen max-h-screen p-6 gap-3 bg-[#252931]">
+            <div className="flex flex-col min-h-screen max-h-screen p-6 gap-3 bg-[#252931] select-text">
                 <header className=" text-white py-4 flex justify-between">
                     <div className="flex gap-3 items-center">
                         <h1 className=" text-xl font-black tracking-[2px]">Orionus</h1>

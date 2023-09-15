@@ -24,7 +24,6 @@ export default function Register() {
             if (username.length < 20 && password.length >= 8) {
                 await registerChat({name, username, email, password})
             }else{
-                console.log(passwordError)
                 if (username.length > 20) {
                     setUsernameError(true)
                 }else{
