@@ -2,6 +2,8 @@ import { createContext, useContext } from 'react'
 import { supabase } from '../client'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CryptoJS from 'crypto-js';
+
 
 export const chatContext = createContext()
 export const useChat = () => {
@@ -26,6 +28,20 @@ export function ChatContextProvider({ children }) {
     const [loginError, setLoginError] = useState(false)
     const [nameForUser, setNameForUser] = useState('')
     const [usernameForUser, setUsernameForUser] = useState('')
+    const [newChatName, setNewChatName] = useState('')
+
+    const encryptionKey = 'tu_clave_de_cifrado'
+
+    function encryptMessage(message) {
+        const ciphertext = CryptoJS.AES.encrypt(message, encryptionKey).toString()
+        return ciphertext
+    }
+
+    function decryptMessage(ciphertext) {
+        const bytes = CryptoJS.AES.decrypt(ciphertext, encryptionKey)
+        const originalMessage = bytes.toString(CryptoJS.enc.Utf8)
+        return originalMessage
+    }
 
 
     const getUserInformation = async () => {
@@ -101,20 +117,15 @@ export function ChatContextProvider({ children }) {
     }
 
     const sendMessages = async ({message, chatActual}) => {
-        console.log(message, chatActual)
         const { data: { user } } = await supabase.auth.getUser()
+        const encryptedMessage = encryptMessage(message)
+
         if(waitSend === false){
             const { data, error } = await supabase
                 .from('messages')
                 .insert([
-                    { id_sender: user.id, message: message, chat_id: chatActual },
+                    { id_sender: user.id, message: encryptedMessage, chat_id: chatActual },
                 ])
-
-            if (error) {
-                console.log(error)
-            } else {
-                console.log(data)
-            }
         }
     }
 
@@ -212,7 +223,8 @@ export function ChatContextProvider({ children }) {
 
     }
 
-    const getMessages = async (chatActual, firstCharge = true) => {
+    const getMessages = async (chatActual, firstCharge = true, chatName = 'default') => {
+        setNewChatName(chatName)
         setChatAvailable(true)
         //Obtiene todos los mensajes de un chat en especifico, en donde el usuario esta involucrado
 
@@ -230,7 +242,14 @@ export function ChatContextProvider({ children }) {
             .eq('chat_id', chatActual)
             .order('created_at', { ascending: true })
 
-        SetMessages(sender)
+        const decryptedMessages = sender.map(msg => {
+                return {
+                    ...msg,
+                    message: decryptMessage(msg.message)
+                };
+            });
+
+        SetMessages(decryptedMessages)
         setChatActual(chatActual)
         setWaitSend(false)
         setLoadingMessages(false)
@@ -246,7 +265,7 @@ export function ChatContextProvider({ children }) {
                 table: 'messages',
                 filter: `chat_id=eq.${chatActual}`
             },
-            (payload) => getMessages(chatActual, false)
+            (payload) => getMessages(chatActual, false, newChatName)
         )
         .subscribe()
 
@@ -275,7 +294,8 @@ export function ChatContextProvider({ children }) {
             loginError,
             getUserInformation,
             nameForUser,
-            usernameForUser
+            usernameForUser,
+            newChatName
         }}>
 
             {children}

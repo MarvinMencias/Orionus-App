@@ -17,7 +17,6 @@ export default function Home() {
     useEffect(() => {
         getChats()
         getUserInformation()
-        console.log("Cargando chats")
     }, [])
 
     return (
@@ -25,7 +24,7 @@ export default function Home() {
             <div className="flex flex-col min-h-screen max-h-screen p-6 gap-3 bg-[#252931] select-text">
                 <header className=" text-white py-4 flex justify-between">
                     <div className="flex gap-3 items-center">
-                        <h1 className=" text-xl font-black tracking-[2px]">Orionus</h1>
+                        <h1 className=" text-2xl font-black tracking-[2px]">Orionus</h1>
                         <button onClick={onLogOut} title="Cerrar Sesión">
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-logout-2 w-8 stroke-red-400 hover:stroke-red-50" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -39,9 +38,19 @@ export default function Home() {
 
                     <div className="flex gap-3 items-center">
                         <div className="text-right">
-                            <p className="text-xl"> <strong>{usernameForUser}</strong></p>
-                            <p className="text-md text-slate-400">{nameForUser}</p>
+                            <p className="text-xl"> 
+                                <strong>
+                                {usernameForUser ? 
+                                usernameForUser : 
+                                '--'}
+                                </strong>
+                            </p>
 
+                            <p className="text-md text-slate-400">
+                                {nameForUser ?
+                                 nameForUser :
+                                  '--'}
+                            </p>
                         </div>
 
                         <img src="./gato.png" alt="user_profile_cat" className="w-12" />

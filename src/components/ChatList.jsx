@@ -5,14 +5,8 @@ import NoChats from "./NoChats"
 import StartChat from "./StartChat"
 
 export default function () {
-    const { chats, users, userID, isChatting, loading, getMessages, getChats } = useChat()
-    const [firstCharge, setFirstCharge] = useState(false)
+    const { chats, users, userID, isChatting, loading, getChats } = useChat()
 
-    //Obtener todos los mensajes de un chat
-    const onGetMessages = async (chatID) => {
-        setFirstCharge(true)
-        await getMessages(chatID, firstCharge)
-    }
 
     return (
         <div className="flex flex-col gap-5 min-h-full w-[30%] min-w-[30%]  text-white">
@@ -47,27 +41,27 @@ export default function () {
                 {
                     loading ?
                         <div className="grid gap-7 animate-pulse">
-                            <div class="flex items-center mb-4 w-full">
-                                <div class="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
+                            <div className="flex items-center mb-4 w-full">
+                                <div className="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
                                 <div className="grid gap-5">
-                                    <div class="h-5 w-52  bg-gray-500 rounded-xl"></div>
-                                    <div class="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
+                                    <div className="h-5 w-52  bg-gray-500 rounded-xl"></div>
+                                    <div className="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
                                 </div>
                             </div>
 
-                            <div class="flex items-center mb-4 w-full">
-                                <div class="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
+                            <div className="flex items-center mb-4 w-full">
+                                <div className="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
                                 <div className="grid gap-5">
-                                    <div class="h-5 w-52  bg-gray-500 rounded-xl"></div>
-                                    <div class="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
+                                    <div className="h-5 w-52  bg-gray-500 rounded-xl"></div>
+                                    <div className="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
                                 </div>
                             </div>
 
-                            <div class="flex items-center mb-4 w-full">
-                                <div class="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
+                            <div className="flex items-center mb-4 w-full">
+                                <div className="h-12 w-12 bg-gray-500 rounded-full mr-4"></div>
                                 <div className="grid gap-5">
-                                    <div class="h-5 w-52  bg-gray-500 rounded-xl"></div>
-                                    <div class="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
+                                    <div className="h-5 w-52  bg-gray-500 rounded-xl"></div>
+                                    <div className="h-4 w-1/2 bg-gray-500 rounded-xl"></div>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +75,7 @@ export default function () {
                                     const senderInfo = users.find(user => user.id === chat.sender);
                                     const receptorInfo = users.find(user => user.id === chat.receptor);
                                     return (
-                                        <ChatContact key={chat.id} name={senderInfo && chat.sender !== userID ? senderInfo.username : receptorInfo && receptorInfo.username} onClick={() => onGetMessages(chat.id)} />
+                                        <ChatContact key={chat.id} name={senderInfo && chat.sender !== userID ? senderInfo.username : receptorInfo && receptorInfo.username} chatID={chat.id}/>
 
                                     );
                                 })
