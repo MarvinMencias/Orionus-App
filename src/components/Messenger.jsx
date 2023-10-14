@@ -1,6 +1,6 @@
-import UserChat from "./UserChat"
-import { useChat } from "../Context/Context"
-import NoMessages from "./NoMessages"
+import UserChat from "./user-chat"
+import { useChat } from "../context/Context"
+import NoMessages from "./no-messages"
 
 export default function Messenger() {
     const { chatAvailable } = useChat()

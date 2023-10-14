@@ -1,25 +1,8 @@
-import { useState } from "react";
-import ImagePreview from "./ImagePreview";
-ImagePreview
+import ImagePreview from "./image-preview"
 
 export default function ChatMessage({ text, position = "false" }) {
-    const [imagePreview, setImagePreview] = useState(false)
 
     const processText = (text) => {
-        // Expresión regular para buscar URLs de imágenes
-        const imgRegex = /(https?:\/\/[^\s]+\.(?:jpg|jpeg|gif|png))/gi
-        const imgMatches = text.match(imgRegex)
-
-        if (imgMatches) {
-            // Si hay URLs de imágenes, devolvemos elementos img
-            return imgMatches.map((url, index) => (
-                <div className="w-full" key={index}>
-                    <ImagePreview url={url} />
-                </div>
-
-            ));
-        }
-
         // Si no hay URLs de imágenes, procesamos URLs normales
         const urlRegex = /(https?:\/\/[^\s]+)/g
         return text.split(urlRegex).map((part, index) => {

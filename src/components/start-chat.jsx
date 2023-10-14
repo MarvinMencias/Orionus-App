@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { useChat } from "../Context/Context"
+import { useChat } from "../context/Context"
 
 
 export default function StartChat() {
-    const { createChat } = useChat()
+    const { createChat, getChats } = useChat()
     const [openCreateChat, setOpenCreateChat] = useState(false)
     const [username, setUsername] = useState('')
     const [message, setMessage] = useState('')
@@ -12,6 +12,7 @@ export default function StartChat() {
         event.preventDefault()
         await createChat(username, message)
         setOpenCreateChat(false)
+        getChats()
     }
 
     return (
@@ -21,7 +22,7 @@ export default function StartChat() {
             {openCreateChat && (
                 <div className="fixed w-full h-full z-20 top-0 left-0 bg-black/70 flex items-center justify-center">
                     <form onSubmit={onCreateChat} className="flex flex-col gap-10 box-border p-7 w-1/2 bg-[#252931] rounded-xl">
-                        <h3 className="text-2xl">Crear nuevo chat</h3>
+                        <span className="text-2xl">Crear nuevo chat</span>
                         <div className="grid gap-5 w-full">
                             <div className="flex gap-2 text-center">
                                 <label htmlFor="username"className="">¿A quién hablamos hoy?</label>

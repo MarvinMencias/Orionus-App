@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useChat } from '../Context/Context'
+import { useChat } from '../context/Context'
 import { Link } from 'react-router-dom'
 
 export default function Register() {

@@ -1,7 +1,8 @@
-import ChatMessage from '../components/ChatMessage'
+import ChatMessage from './chat-message'
 import { useState, useRef, useEffect } from 'react'
-import { useChat } from "../Context/Context"
-import ChargeImage from './SetImage'
+import { useChat } from "../context/Context"
+import ChargeImage from './set-image'
+import { IconLockHeart, IconLoader3, IconSend } from "@tabler/icons-react"
 
 
 export default function UserChat() {
@@ -31,20 +32,7 @@ export default function UserChat() {
             <div className="messages h-screen rounded-2xl overflow-y-auto px-3 py-3  bg-[#1C1E25]">
                 <div className='w-full flex items-center justify-center'>
                     <div className='flex items-center gap-3 p-4 mb-8 bg-black/40 text-white rounded-2xl'>
-                        <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            className="w-10 stroke-white" 
-                            viewBox="0 0 24 24" 
-                            strokeWidth="1" 
-                            stroke="currentColor" 
-                            fill="none" 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"></path>
-                            <path d="M8 11m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z"></path>
-                            <path d="M10 11v-2a2 2 0 1 1 4 0v2"></path>
-                        </svg>
+                       <IconLockHeart color='cyan' size={40} stroke={1.5}/>
                         <div>
                             <p className='font-medium leading-relaxed'>Tus mensajes estan cifrados</p>
                             <p className='text-slate-400 text-sm'>Nadie puede acceder a tus mensajes</p>
@@ -100,19 +88,7 @@ export default function UserChat() {
 
 
                     {waitSend ?
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="icon icon-tabler icon-tabler-loader-3 animate-spin w-[47px] p-1  stroke-white stroke-2"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1"
-                            stroke="currentColor"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9 -9a9 9 0 0 0 -9 -9"></path>
-                            <path d="M17 12a5 5 0 1 0 -5 5"></path>
-                        </svg>
+                        <IconLoader3 className="animate-spin stroke-white p-1" size={42} />
                         :
                         <>
                             <ChargeImage />
@@ -120,19 +96,7 @@ export default function UserChat() {
                             <button
                                 className=" bg-yellow-100 hover:bg-yellow-200 active:bg-yellow-600 text-white rounded-xl p-[7px] box-border disabled:bg-transparent" type='submit'
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="icon icon-tabler icon-tabler-send stroke-1 w-[30px] stroke-black"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="1"
-                                    stroke="currentColor"
-                                    fill="none"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M10 14l11 -11"></path>
-                                    <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"></path>
-                                </svg>
+                                <IconSend className="stroke-black stroke-1" size={28}/>
                             </button>
                         </>
                     }

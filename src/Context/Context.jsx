@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react'
 import { supabase } from '../client'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import CryptoJS from 'crypto-js';
+import CryptoJS from 'crypto-js'
 
 
 export const chatContext = createContext()
@@ -30,7 +30,7 @@ export function ChatContextProvider({ children }) {
     const [usernameForUser, setUsernameForUser] = useState('')
     const [newChatName, setNewChatName] = useState('')
 
-    const encryptionKey = 'tu_clave_de_cifrado'
+    const encryptionKey = import.meta.env.VITE_APP_3664_ANON_4663
 
     function encryptMessage(message) {
         const ciphertext = CryptoJS.AES.encrypt(message, encryptionKey).toString()
@@ -42,6 +42,7 @@ export function ChatContextProvider({ children }) {
         const originalMessage = bytes.toString(CryptoJS.enc.Utf8)
         return originalMessage
     }
+
 
 
     const getUserInformation = async () => {
@@ -57,9 +58,11 @@ export function ChatContextProvider({ children }) {
         if(UserData){
             setNameForUser(newName)
             setUsernameForUser(newUsername)
-        }else{
-
         }
+    }
+
+    const updateUserInformation = async (newImage, newName, newUsername) => {
+
     }
 
     const registerChat = async ({ name, username, email, password }) => {
@@ -179,7 +182,6 @@ export function ChatContextProvider({ children }) {
         const { data: { user } } = await supabase.auth.getUser()
         //Obtiene el id del usuario actual (Para usarlo de manera global en el codigo)
         setUserID(user.id)
-
         if (user) {
             setLoading(true)
             const { data: chatsST } = await supabase

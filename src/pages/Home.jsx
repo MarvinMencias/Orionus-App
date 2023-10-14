@@ -1,12 +1,11 @@
 import { useEffect } from "react"
-import { useChat } from '../Context/Context'
-import ChatList from "../components/ChatList"
-import Messenger from "../components/Messenger"
+import { useChat } from '../context/Context'
+import ChatList from "../components/chat-list"
+import Messenger from "../components/messenger"
+import UserInfo from "../components/user-information"
 export default function Home() {
 
-
-
-    const { getChats, LogOut, getUserInformation, nameForUser, usernameForUser } = useChat()
+    const { getChats, LogOut, getUserInformation} = useChat()
 
 
     const onLogOut = async () => {
@@ -21,8 +20,8 @@ export default function Home() {
 
     return (
         <>
-            <div className="flex flex-col min-h-screen max-h-screen p-6 gap-3 bg-[#252931] select-text">
-                <header className=" text-white py-4 flex justify-between">
+            <div className="flex flex-col min-h-screen max-h-screen p-6 gap-1 bg-[#252931] select-text">
+                <header className=" text-white py-2 flex justify-between">
                     <div className="flex gap-3 items-center">
                         <h1 className=" text-2xl font-black tracking-[2px]">Orionus</h1>
                         <button onClick={onLogOut} title="Cerrar Sesión">
@@ -34,28 +33,7 @@ export default function Home() {
                             </svg>
                         </button>
                     </div>
-
-
-                    <div className="flex gap-3 items-center">
-                        <div className="text-right">
-                            <p className="text-xl"> 
-                                <strong>
-                                {usernameForUser ? 
-                                usernameForUser : 
-                                '--'}
-                                </strong>
-                            </p>
-
-                            <p className="text-md text-slate-400">
-                                {nameForUser ?
-                                 nameForUser :
-                                  '--'}
-                            </p>
-                        </div>
-
-                        <img src="./gato.png" alt="user_profile_cat" className="w-12" />
-                    </div>
-
+                    <UserInfo/>
                 </header>
 
                 <div className="flex min-h-full gap-5">
