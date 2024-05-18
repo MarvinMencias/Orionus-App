@@ -1,8 +1,10 @@
-# React + Vite
+# React + Vite Messenger App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This web application is a personal project to improve and streamline my skills.
 
-Currently, two official plugins are available:
+In this project I carry out functions such as:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Database
+2. Real time messages
+3. Authetication
+4. Optimization 
